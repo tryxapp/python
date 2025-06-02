@@ -4,7 +4,7 @@ def extract_logins(file_path):
     logins = {
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [],
-        'sar': [], 'smss': [], 'moodle': [], 'zcom': [], 'bigdata': []
+        'sar': [], 'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -55,6 +55,8 @@ def extract_logins(file_path):
                         logins['zcom'].append(line)
                     if 'bigdata.' in line:
                         logins['bigdata'].append(line)
+                    if 'chiangmaipao.go.th/cmtrack/' in line:
+                        logins['chiangmaipao'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
