@@ -40,7 +40,7 @@ def is_rdp_connected():
                 return True
         return False
     except Exception as e:
-        print("Error cek sesi RDP:", e)
+        print("Error cek sesi :", e)
         return False
 
 # Bandwidth usage (Tx+Rx sejak boot)
