@@ -6,6 +6,7 @@ import socket
 import win32ts
 import datetime
 import win32api
+import getpass
 
 # Konfigurasi Telegram
 TELEGRAM_TOKEN = '7883324144:AAEWrjHXB3C4Kt-bz3rp8EqUUCv_URi_te0'
@@ -28,22 +29,17 @@ def send_telegram_message(message):
 # Cek apakah RDP sedang aktif
 def is_rdp_connected():
     try:
-        sessions = win32ts.WTSEnumerateSessions(None, 1, 0)
-        for session in sessions:
-            session_id = session[0]
-            try:
-                state = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSConnectState)
-                username = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSUserName)
+        users = psutil.users()
+        active_users = [u.name for u in users if u.name and u.host != '']
+        current_user = getpass.getuser()
 
-                # Periksa jika status sesi adalah aktif/terhubung dan user tidak kosong
-                if state in [win32ts.WTSActive, win32ts.WTSConnected] and username:
-                    return True, username or "Unknown"
-            except Exception as inner_e:
-                continue  # Abaikan error per sesi
-        return False, "No Active Session"
+        if active_users:
+            return True, active_users[0]  # Ambil user pertama yang aktif
+        else:
+            return True, current_user  # fallback ke user lokal
     except Exception as e:
-        print("Error checking RDP sessions:", e)
-        return False, "Error"
+        print("Error checking RDP session:", e)
+        return False, "Unknown"
 
 # Bandwidth usage sejak boot
 def get_bandwidth_usage():
