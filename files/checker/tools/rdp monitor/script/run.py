@@ -3,9 +3,8 @@ import shutil
 import requests
 import time
 import socket
-import win32ts
 import datetime
-import win32api
+import platform
 import getpass
 
 # Konfigurasi Telegram
@@ -51,13 +50,13 @@ def get_bandwidth_usage():
 # Storage info
 def get_storage_info():
     total, used, free = shutil.disk_usage("C:/")
-    return round(used / (1024**3), 2), round(free / (1024**3), 2)
+    return round(used / (1024**3), 2), round(free / (1024**3), 2), round(total / (1024**3), 2)
 
 # CPU & RAM usage
 def get_cpu_ram_usage():
     cpu = psutil.cpu_percent(interval=1)
-    ram = psutil.virtual_memory().percent
-    return cpu, ram
+    ram = psutil.virtual_memory()
+    return cpu, ram.percent, round(ram.total / (1024**3), 2)
 
 # Uptime server
 def get_uptime():
@@ -77,15 +76,36 @@ def get_ip_addresses():
         public_ip = "N/A"
     return local_ip, public_ip
 
+# Lokasi IP Publik
+def get_ip_location(ip):
+    try:
+        response = requests.get(f"http://ip-api.com/json/{ip}")
+        data = response.json()
+        if data['status'] == 'success':
+            return f"{data['city']}, {data['regionName']}, {data['country']}"
+        else:
+            return "Unknown"
+    except:
+        return "Unknown"
+
+# Informasi Sistem
+def get_system_info():
+    os_name = platform.system()
+    os_version = platform.version()
+    cpu_cores = psutil.cpu_count(logical=False)
+    return os_name, os_version, cpu_cores
+
 # Main monitoring loop
 def monitor():
     while True:
         rdp_status, username = is_rdp_connected()
         tx, rx = get_bandwidth_usage()
-        used_gb, free_gb = get_storage_info()
-        cpu, ram = get_cpu_ram_usage()
+        used_gb, free_gb, total_gb = get_storage_info()
+        cpu, ram_percent, total_ram = get_cpu_ram_usage()
         uptime = get_uptime()
         local_ip, public_ip = get_ip_addresses()
+        location = get_ip_location(public_ip)
+        os_name, os_version, cpu_cores = get_system_info()
 
         now = datetime.datetime.now().strftime("%d %B %Y - %H:%M:%S")
 
@@ -94,10 +114,13 @@ def monitor():
             f"👥 Status RDP: {'🟢 Connected' if rdp_status else '🔴 Disconnected'}\n"
             f"👤 User Aktif: {username}\n"
             f"🧠 CPU Usage: {cpu}%\n"
-            f"🧬 RAM Usage: {ram}%\n"
+            f"🧬 RAM Usage: {ram_percent}% dari {total_ram} GB\n"
             f"📶 Bandwidth: {rx} MB RX | {tx} MB TX\n"
-            f"💽 Storage C:: {used_gb} GB Used | {free_gb} GB Free\n"
+            f"💽 Storage C:: {used_gb} GB Used | {free_gb} GB Free dari {total_gb} GB\n"
+            f"🖥️ OS: {os_name} {os_version}\n"
+            f"🧩 CPU Cores: {cpu_cores}\n"
             f"🌐 IP Publik: {public_ip}\n"
+            f"📍 Lokasi IP: {location}\n"
             f"🏠 IP Lokal: {local_ip}\n"
             f"⏱️ Uptime: {uptime} jam\n"
             f"🕒 Terakhir update: {now}"
