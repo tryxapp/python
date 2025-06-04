@@ -31,14 +31,18 @@ def is_rdp_connected():
         sessions = win32ts.WTSEnumerateSessions(None, 1, 0)
         for session in sessions:
             session_id = session[0]
-            state = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSConnectState)
-            username = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSUserName)
+            try:
+                state = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSConnectState)
+                username = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSUserName)
 
-            if username and state in [win32ts.WTSActive, win32ts.WTSConnected]:
-                return True, username
-        return False, "N/A"
+                # Periksa jika status sesi adalah aktif/terhubung dan user tidak kosong
+                if state in [win32ts.WTSActive, win32ts.WTSConnected] and username:
+                    return True, username or "Unknown"
+            except Exception as inner_e:
+                continue  # Abaikan error per sesi
+        return False, "No Active Session"
     except Exception as e:
-        print("Error Session Check:", e)
+        print("Error checking RDP sessions:", e)
         return False, "Error"
 
 # Bandwidth usage sejak boot
