@@ -32,7 +32,11 @@ def is_rdp_connected():
         for session in sessions:
             session_id = session[0]
             state = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSConnectState)
-            if state == win32ts.WTSActive:
+            username = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSUserName)
+            client_address = win32ts.WTSQuerySessionInformation(None, session_id, win32ts.WTSClientAddress)
+
+            # Cek apakah user terkoneksi dari client dan bukan sesi kosong
+            if username and state in [win32ts.WTSActive, win32ts.WTSConnected]:
                 return True
         return False
     except Exception as e:
