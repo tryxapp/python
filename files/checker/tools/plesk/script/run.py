@@ -100,7 +100,7 @@ def process_account(line):
 
 if __name__ == "__main__":
     try:
-        list_path = input(f"{Fore.WHITE} Your Joomla List : ").strip()
+        list_path = input(f"{Fore.WHITE} Your Plesk List : ").strip()
         thread_count = int(input(f"{Fore.WHITE} Thread : ").strip())
         with open(list_path, "r", encoding="utf-8") as f:
             lines = [l.strip() for l in f if l.strip()]
