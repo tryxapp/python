@@ -1,7 +1,7 @@
 import base64
 import os
 
-def multi_layer_obfuscate(input_path, layers=10):
+def multi_layer_obfuscate(input_path, layers=100):
     if not os.path.isfile(input_path):
         print("❌ File tidak ditemukan!")
         return
