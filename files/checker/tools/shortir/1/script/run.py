@@ -25,9 +25,9 @@ def extract_logins(file_path):
                         logins['cpanel'].append(line)
                     if ':2086' in line or ':2087' in line or '/whm.' in line:
                         logins['whm'].append(line)
-                    if '/login_up.php' in line or '/core/' in line:
+                    if '/login_up.php' in line or ':8443' in line:
                         logins['plesk'].append(line)
-                    if '/user/login' in line or ':8443' in line:
+                    if '/user/login' in line or 'drupal' in line or '/core/' in line:
                         logins['drupal'].append(line)
                     if ':7080' in line:
                         logins['cyberpanel'].append(line)
