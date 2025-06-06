@@ -3,8 +3,8 @@ import os
 def extract_logins(file_path):
     logins = {
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
-        'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [],
-        'sar': [], 'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': []
+        'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
+        'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -57,6 +57,14 @@ def extract_logins(file_path):
                         logins['bigdata'].append(line)
                     if 'chiangmaipao.go.th/cmtrack/' in line:
                         logins['chiangmaipao'].append(line)
+                    if '.th' in line:
+                        logins['th'].append(line)
+                    if '.id' in line:
+                        logins['id'].append(line)
+                    if '.gov' in line:
+                        logins['gov'].append(line)
+                    if '.edu' in line:
+                        logins['edu'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
