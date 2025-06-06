@@ -4,7 +4,8 @@ def extract_logins(file_path):
     logins = {
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
-        'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 'br': []
+        'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
+        'br': []
     }
 
     print(f"\nMemproses file: {file_path}")
