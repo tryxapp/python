@@ -17,7 +17,7 @@ def extract_logins(file_path):
                     line = line.strip().lower()
                     if not line:
                         continue
-                    if 'wp-admin' in line or 'wp-login.php' in line:
+                    if 'wp-admin' in line or 'wp-login.php' in line or 'wp-content' in line or 'wp-includes' in line:
                         logins['wordpress'].append(line)
                     if 'ftp://' in line:
                         logins['ftp'].append(line)
@@ -25,15 +25,15 @@ def extract_logins(file_path):
                         logins['cpanel'].append(line)
                     if ':2086' in line or ':2087' in line or '/whm.' in line:
                         logins['whm'].append(line)
-                    if '/login_up.php' in line:
+                    if '/login_up.php' in line or '/core/' in line:
                         logins['plesk'].append(line)
-                    if '/user/login' in line:
+                    if '/user/login' in line or ':8443' in line:
                         logins['drupal'].append(line)
                     if ':7080' in line:
                         logins['cyberpanel'].append(line)
                     if 'zpanel' in line:
                         logins['zpanel'].append(line)
-                    if '/administrator' in line:
+                    if '/administrator' in line or 'joomla' in line or 'com_content' in line: 
                         logins['joomla'].append(line)
                     if ':2222' in line:
                         logins['directadmin'].append(line)
