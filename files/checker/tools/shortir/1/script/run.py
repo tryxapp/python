@@ -5,7 +5,7 @@ def extract_logins(file_path):
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
         'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
-        'br': []
+        'br': [], 'vn': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -68,6 +68,8 @@ def extract_logins(file_path):
                         logins['edu'].append(line)
                     if '.br' in line:
                         logins['br'].append(line)
+                    if '.vn' in line:
+                        logins['vn'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
