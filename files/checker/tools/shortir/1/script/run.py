@@ -15,7 +15,7 @@ def extract_logins(file_path):
                     line = line.strip().lower()
                     if not line:
                         continue
-                    if 'fchiangmaipao.go.th' in line:
+                    if 'chiangmaipao.go.th' in line:
                         logins['chiangmaipao'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
