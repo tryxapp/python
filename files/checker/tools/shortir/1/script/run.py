@@ -2,10 +2,7 @@ import os
 
 def extract_logins(file_path):
     logins = {
-        'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
-        'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
-        'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
-        'br': [], 'vn': []
+        'chiangmaipao': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -18,58 +15,8 @@ def extract_logins(file_path):
                     line = line.strip().lower()
                     if not line:
                         continue
-                    if 'wp-admin' in line or 'wp-login.php' in line or 'wp-content' in line or 'wp-includes' in line:
-                        logins['wordpress'].append(line)
-                    if 'ftp://' in line:
-                        logins['ftp'].append(line)
-                    if ':2082' in line or ':2083' in line or '/cpanel.' in line:
-                        logins['cpanel'].append(line)
-                    if ':2086' in line or ':2087' in line or '/whm.' in line:
-                        logins['whm'].append(line)
-                    if '/login_up.php' in line or ':8443' in line:
-                        logins['plesk'].append(line)
-                    if '/user/login' in line or 'drupal' in line or '/core/' in line:
-                        logins['drupal'].append(line)
-                    if ':7080' in line:
-                        logins['cyberpanel'].append(line)
-                    if 'zpanel' in line:
-                        logins['zpanel'].append(line)
-                    if '/administrator' in line or 'joomla' in line or 'com_content' in line: 
-                        logins['joomla'].append(line)
-                    if ':2222' in line:
-                        logins['directadmin'].append(line)
-                    if '/web-admin' in line:
-                        logins['web-admin'].append(line)
-                    if ':7800/login' in line:
-                        logins['aapanel'].append(line)
-                    if 'clientarea.php' in line:
-                        logins['clientarea'].append(line)
-                    if '.id/index.php/auth/signin' in line:
-                        logins['Cms-Website'].append(line)
-                    if 'sar.' in line:
-                        logins['sar'].append(line)
-                    if 'smss.' in line:
-                        logins['smss'].append(line)
-                    if 'moodle.' in line:
-                        logins['moodle'].append(line)
-                    if '.z.com' in line:
-                        logins['zcom'].append(line)
-                    if 'bigdata.' in line:
-                        logins['bigdata'].append(line)
-                    if 'chiangmaipao.go.th/cmtrack/' in line:
+                    if 'fchiangmaipao.go.th' in line:
                         logins['chiangmaipao'].append(line)
-                    if '.th' in line:
-                        logins['th'].append(line)
-                    if '.id' in line:
-                        logins['id'].append(line)
-                    if '.gov' in line:
-                        logins['gov'].append(line)
-                    if '.edu' in line:
-                        logins['edu'].append(line)
-                    if '.br' in line:
-                        logins['br'].append(line)
-                    if '.vn' in line:
-                        logins['vn'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
