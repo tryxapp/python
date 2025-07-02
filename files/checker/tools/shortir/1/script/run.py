@@ -98,7 +98,7 @@ def extract_logins(file_path):
     return logins
 
 def save_logins_to_file(logins):
-    result_folder = "result new"
+    result_folder = "result"
     os.makedirs(result_folder, exist_ok=True)
 
     for category, data in logins.items():
