@@ -1,8 +1,9 @@
 import os
+import re
 
 def extract_logins(file_path):
     logins = {
-        'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 'phpmyadmin': [], 'owncloud': [], 'cyberpanel': [], 'zpanel': [],
+        'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 'phpmyadmin': [], 'owncloud': [], 'ojs': [], 'prestashop': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
         'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
         'br': [], 'vn': [], 'warning-acfs': [], 'radityadika': []
@@ -50,6 +51,10 @@ def extract_logins(file_path):
                         logins['directadmin'].append(line)
                     if '/web-admin' in line:
                         logins['web-admin'].append(line)
+					if '/index.php' in line and '/login' in line:
+                        logins['ojs'].append(line)
+                    if re.search(r'/admin.*/index\.php', line):
+                        logins['prestashop'].append(line)
                     if ':7800/login' in line:
                         logins['aapanel'].append(line)
                     if 'clientarea.php' in line:
