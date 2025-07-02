@@ -51,7 +51,7 @@ def extract_logins(file_path):
                         logins['directadmin'].append(line)
                     if '/web-admin' in line:
                         logins['web-admin'].append(line)
-					if '/index.php' in line and '/login' in line:
+                    if '/index.php' in line and '/login' in line:
                         logins['ojs'].append(line)
                     if re.search(r'/admin.*/index\.php', line):
                         logins['prestashop'].append(line)
