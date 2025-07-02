@@ -5,7 +5,7 @@ def extract_logins(file_path):
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
         'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
-        'br': [], 'vn': []
+        'br': [], 'vn': [], 'warning-acfs': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -70,6 +70,8 @@ def extract_logins(file_path):
                         logins['br'].append(line)
                     if '.vn' in line:
                         logins['vn'].append(line)
+                    if 'warning.acfs.go.th' in line:
+                        logins['warning-acfs'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
