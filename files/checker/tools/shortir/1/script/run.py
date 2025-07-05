@@ -6,7 +6,7 @@ def extract_logins(file_path):
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 'phpmyadmin': [], 'owncloud': [], 'ojs': [], 'prestashop': [], 'cyberpanel': [], 'zpanel': [],
         'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
         'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
-        'br': [], 'vn': [], 'warning-acfs': [], 'radityadika': []
+        'br': [], 'vn': [], 'warning-acfs': [], 'radityadika': [], 'savingscmu': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -89,6 +89,8 @@ def extract_logins(file_path):
                         logins['warning-acfs'].append(line)
                     if 'radityadika.com' in line:
                         logins['radityadika'].append(line)
+                    if 'savingscmu.or.th' in line:
+                        logins['savingscmu'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
