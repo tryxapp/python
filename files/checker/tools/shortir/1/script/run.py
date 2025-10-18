@@ -3,9 +3,9 @@ import re
 
 def extract_logins(file_path):
     logins = {
-        'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 'phpmyadmin': [], 
-		'owncloud': [], 'ojs': [], 'prestashop': [], 'cyberpanel': [], 'zpanel': [], 'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 
-		'clientarea': [], 'Cms-Website': [], 'moodle': [], 'zcom': [], 'th': [], 'id': [], 'gov': [], 'edu': []
+        'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 
+		'phpmyadmin': [], 'owncloud': [], 'ojs': [], 'prestashop': [], 'cyberpanel': [], 'zpanel': [], 'joomla': [], 'directadmin': [], 
+		'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'moodle': [], 'zcom': [], 'th': [], 'id': [], 'gov': [], 'edu': []
     }
 
     print(f"\nMemproses file: {file_path}")
