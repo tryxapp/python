@@ -4,9 +4,8 @@ import re
 def extract_logins(file_path):
     logins = {
         'wordpress': [], 'ftp': [], 'cpanel': [], 'whm': [], 'plesk': [], 'drupal': [], 'magento': [], 'opencart': [], 'bitrix': [], 'phpmyadmin': [], 'owncloud': [], 'ojs': [], 'prestashop': [], 'cyberpanel': [], 'zpanel': [],
-        'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [], 'sar': [],
-        'smss': [], 'moodle': [], 'zcom': [], 'bigdata': [], 'chiangmaipao': [], 'th': [], 'id': [], 'gov': [], 'edu': [], 
-        'br': [], 'vn': [], 'warning-acfs': [], 'rmutto': [], 'savingscmu': []
+        'joomla': [], 'directadmin': [], 'web-admin': [], 'aapanel': [], 'clientarea': [], 'Cms-Website': [],
+        'moodle': [], 'zcom': [], 'th': [], 'id': [], 'gov': [], 'edu': []
     }
 
     print(f"\nMemproses file: {file_path}")
@@ -61,18 +60,10 @@ def extract_logins(file_path):
                         logins['clientarea'].append(line)
                     if '.id/index.php/auth/signin' in line:
                         logins['Cms-Website'].append(line)
-                    if 'sar.' in line:
-                        logins['sar'].append(line)
-                    if 'smss.' in line:
-                        logins['smss'].append(line)
                     if 'moodle.' in line or '/login/index.php' in line:
                         logins['moodle'].append(line)
                     if '.z.com' in line:
                         logins['zcom'].append(line)
-                    if 'bigdata.' in line:
-                        logins['bigdata'].append(line)
-                    if 'chiangmaipao.go.th/cmtrack/' in line:
-                        logins['chiangmaipao'].append(line)
                     if '.th' in line:
                         logins['th'].append(line)
                     if '.id' in line:
@@ -81,16 +72,6 @@ def extract_logins(file_path):
                         logins['gov'].append(line)
                     if '.edu' in line:
                         logins['edu'].append(line)
-                    if '.br' in line:
-                        logins['br'].append(line)
-                    if '.vn' in line:
-                        logins['vn'].append(line)
-                    if 'warning.acfs.go.th' in line:
-                        logins['warning-acfs'].append(line)
-                    if 'sei.rmutto.ac.th' in line:
-                        logins['rmutto'].append(line)
-                    if 'savingscmu.or.th' in line:
-                        logins['savingscmu'].append(line)
             break
         except (UnicodeDecodeError, FileNotFoundError):
             continue
